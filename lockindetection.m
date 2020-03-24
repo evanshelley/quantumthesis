@@ -20,9 +20,9 @@ Vin = A1*sin(2*pi*fosc*t);
 % plot Vin
 subplot(2,1,1);
 plot(t/1e-6,Vin/1e-6,'LineWidth',2);
-% xlabel("Time (\mus)",'FontSize',18);
-% ylabel("Voltage (\muV)",'FontSize',18);
-% title(strcat("Input signal V_{in} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Time (\mus)",'FontSize',18);
+ylabel("Voltage (\muV)",'FontSize',18);
+title(strcat("Input signal V_{in} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 ylim([-(A1+0.1*A1)/1e-6 (A1+0.1*A1)/1e-6]);
 grid on;
 
@@ -37,9 +37,9 @@ f = Fs * (0:(L/2))/L;
 
 subplot(2,1,2);
 plot(f,P1,'LineWidth',2);
-% xlabel("Frequency (Hz)",'FontSize',18);
-% ylabel("|P1(f)|",'FontSize',18);
-% title(strcat("FFT of V_{in} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Frequency (Hz)",'FontSize',18);
+ylabel("|P1(f)|",'FontSize',18);
+title(strcat("FFT of V_{in} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 xlim([0 12e7]);
 ylim([-(0.1*max(abs(P1))+0.1*max(abs(P1))) (max(abs(P1))+0.1*max(abs(P1)))]);
 grid on;
@@ -58,9 +58,9 @@ figure;
 % plot Vevent
 subplot(3,1,1);
 plot(t/1e-6,Vevent/1e-6,'LineWidth',2);
-% xlabel("Time (\mus)",'FontSize',18);
-% ylabel("Voltage (\muV)",'FontSize',18);
-% title(strcat("Signal after event V_{event} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Time (\mus)",'FontSize',18);
+ylabel("Voltage (\muV)",'FontSize',18);
+title(strcat("Signal after event V_{event} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 ylim([-(A1+0.1*A1)/1e-6 (A1+0.1*A1)/1e-6]);
 grid on;
 
@@ -80,9 +80,9 @@ Vnoise = Vevent + noise;
 % plot Vnoise
 subplot(3,1,2);
 plot(t/1e-6,Vnoise/1e-6,'LineWidth',2);
-% xlabel("Time (\mus)",'FontSize',18);
-% ylabel("Voltage (\muV)",'FontSize',18);
-% title(strcat("Signal with noise V_{noise} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Time (\mus)",'FontSize',18);
+ylabel("Voltage (\muV)",'FontSize',18);
+title(strcat("Signal with noise V_{noise} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 ylim([-(A1+0.1*A1)/1e-6 (A1+0.1*A1)/1e-6]);
 grid on;
 
@@ -95,9 +95,9 @@ Vamp = Vnoise * 1e2;
 % plot Vamp
 subplot(3,1,3);
 plot(t/1e-6,Vamp/1e-3,'LineWidth',2);
-% xlabel("Time (\mus)",'FontSize',18);
-% ylabel("Voltage (mV)",'FontSize',18);
-% title(strcat("Amplified signal V_{amp} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Time (\mus)",'FontSize',18);
+ylabel("Voltage (mV)",'FontSize',18);
+title(strcat("Amplified signal V_{amp} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 ylim([-(max(abs(Vamp))+0.1*max(abs(Vamp)))/1e-3 (max(abs(Vamp))+0.1*max(abs(Vamp)))/1e-3]);
 grid on;
 
@@ -115,17 +115,17 @@ Vmixed2 = Vamp .* Vref2;
 figure;
 subplot(4,1,1);
 plot(t/1e-6,Vmixed1/1e-3,'LineWidth',2);
-% xlabel("Time (\mus)",'FontSize',18);
-% ylabel("Voltage (mV)",'FontSize',18);
-% title(strcat("Mixed Signal V_{mixed1} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Time (\mus)",'FontSize',18);
+ylabel("Voltage (mV)",'FontSize',18);
+title(strcat("Mixed Signal V_{mixed1} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 ylim([-(max(abs(Vmixed1))+0.1*max(abs(Vmixed1)))/1e-3 (max(abs(Vmixed1))+0.1*max(abs(Vmixed1)))/1e-3]);
 grid on;
 
 subplot(4,1,2);
 plot(t/1e-6,Vmixed2/1e-3,'LineWidth',2);
-% xlabel("Time (\mus)",'FontSize',18);
-% ylabel("Voltage (mV)",'FontSize',18);
-% title(strcat("Mixed Signal V_{mixed2} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Time (\mus)",'FontSize',18);
+ylabel("Voltage (mV)",'FontSize',18);
+title(strcat("Mixed Signal V_{mixed2} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 ylim([-(max(abs(Vmixed2))+0.1*max(abs(Vmixed2)))/1e-3 (max(abs(Vmixed2))+0.1*max(abs(Vmixed2)))/1e-3]);
 grid on;
 
@@ -140,9 +140,9 @@ f = Fs * (0:(L/2))/L;
 
 subplot(4,1,3);
 plot(f,P1,'LineWidth',2);
-% xlabel("Frequency (Hz)",'FontSize',18);
-% ylabel("|P1(f)|",'FontSize',18);
-% title(strcat("FFT of V_{mixed1} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Frequency (Hz)",'FontSize',18);
+ylabel("|P1(f)|",'FontSize',18);
+title(strcat("FFT of V_{mixed1} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 xlim([0 12e7]);
 ylim([-(0.1*max(abs(P1))+0.1*max(abs(P1))) (max(abs(P1))+0.1*max(abs(P1)))]);
 grid on;
@@ -158,9 +158,9 @@ f = Fs * (0:(L/2))/L;
 
 subplot(4,1,4);
 plot(f,P1,'LineWidth',2);
-% xlabel("Frequency (Hz)",'FontSize',18);
-% ylabel("|P1(f)|",'FontSize',18);
-% title(strcat("FFT of V_{mixed2} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Frequency (Hz)",'FontSize',18);
+ylabel("|P1(f)|",'FontSize',18);
+title(strcat("FFT of V_{mixed2} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 xlim([0 12e7]);
 ylim([-(0.1*max(abs(P1))+0.1*max(abs(P1))) (max(abs(P1))+0.1*max(abs(P1)))]);
 grid on;
@@ -181,17 +181,17 @@ Vfilt2 = filter(lpFilt,Vmixed2);
 figure;
 subplot(4,1,1);
 plot(t/1e-6,Vfilt1/1e-3,'LineWidth',2);
-% xlabel("Time (\mus)",'FontSize',18);
-% ylabel("Voltage (mV)",'FontSize',18);
-% title(strcat("Filtered Signal V_{filt1} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Time (\mus)",'FontSize',18);
+ylabel("Voltage (mV)",'FontSize',18);
+title(strcat("Filtered Signal V_{filt1} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 ylim([-(max(abs(Vfilt1))+0.1*max(abs(Vfilt1)))/1e-3 (max(abs(Vfilt1))+0.1*max(abs(Vfilt1)))/1e-3]);
 grid on;
 
 subplot(4,1,2);
 plot(t/1e-6,Vfilt2/1e-3,'LineWidth',2);
-% xlabel("Time (\mus)",'FontSize',18);
-% ylabel("Voltage (mV)",'FontSize',18);
-% title(strcat("Filtered Signal V_{filt2} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Time (\mus)",'FontSize',18);
+ylabel("Voltage (mV)",'FontSize',18);
+title(strcat("Filtered Signal V_{filt2} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 ylim([-(max(abs(Vfilt2))+0.1*max(abs(Vfilt2)))/1e-3 (max(abs(Vfilt2))+0.1*max(abs(Vfilt2)))/1e-3]);
 grid on;
 
@@ -206,9 +206,9 @@ f = Fs * (0:(L/2))/L;
 
 subplot(4,1,3);
 plot(f,P1,'LineWidth',2);
-% xlabel("Frequency (Hz)",'FontSize',18);
-% ylabel("|P1(f)|",'FontSize',18);
-% title(strcat("FFT of V_{Vfilt1} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Frequency (Hz)",'FontSize',18);
+ylabel("|P1(f)|",'FontSize',18);
+title(strcat("FFT of V_{Vfilt1} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 xlim([0 12e7]);
 ylim([-(0.1*max(abs(P1))+0.1*max(abs(P1))) (max(abs(P1))+0.1*max(abs(P1)))]);
 grid on;
@@ -224,9 +224,9 @@ f = Fs * (0:(L/2))/L;
 
 subplot(4,1,4);
 plot(f,P1,'LineWidth',2);
-% xlabel("Frequency (Hz)",'FontSize',18);
-% ylabel("|P1(f)|",'FontSize',18);
-% title(strcat("FFT of V_{filt2} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Frequency (Hz)",'FontSize',18);
+ylabel("|P1(f)|",'FontSize',18);
+title(strcat("FFT of V_{filt2} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 xlim([0 12e7]);
 ylim([-(0.1*max(abs(P1))+0.1*max(abs(P1))) (max(abs(P1))+0.1*max(abs(P1)))]);
 grid on;
@@ -239,9 +239,9 @@ Vrecovered = 2*sqrt(Vfilt1.^2 + Vfilt2.^2);
 figure;
 subplot(2,1,1);
 plot(t/1e-6,Vrecovered/1e-3,'LineWidth',2);
-% xlabel("Time (\mus)",'FontSize',18);
-% ylabel("Voltage (mV)",'FontSize',18);
-% title(strcat("Recovered Signal V_{recovered} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlabel("Time (\mus)",'FontSize',18);
+ylabel("Voltage (mV)",'FontSize',18);
+title(strcat("Recovered Signal V_{recovered} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
 ylim([-(max(abs(Vrecovered))+0.1*max(abs(Vrecovered)))/1e-3 (max(abs(Vrecovered))+0.1*max(abs(Vrecovered)))/1e-3]);
 grid on;
 
