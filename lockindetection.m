@@ -3,39 +3,55 @@ clear;clc;close all;
 %% Define input signal
 
 % frequency at which the system will operate
-fosc = 30e6;   % 30MHz
+fosc = 10e6;   % 10MHz
 
-% time resolution & time
-L = 5000;      % amount of time units
-dt = 1e-10;     % Ts
-Fs = 1/dt;      % Fs
-t = (0:L-1)*dt; % time
+% time resolution & time - currently set for 1 second long signal @ 500MS/s
+sigduration = 10;    % signal duration, in microseconds
+Fsorig = 500e6;     % sampling freq is 500MS/s
+dt = 1/Fsorig;     % Ts
+Lorig = sigduration * 1e-6 * Fsorig;     % amount of time units as a multiple of sampling freq, 500MS/s
+torig = (0:(Lorig-1))*dt; % time
 
 % amplitude of main oscillations
 A1 = 10e-6;
 
 % Vin is input signal to system
-Vin = A1*sin(2*pi*fosc*t);
+Vin = A1*sin(2*pi*fosc*torig);
+
+
+%% decimate signal
+
+M = 24;    % decimation factor
+
+L = Lorig/M;
+Fs = Fsorig/M;
+
+Vindec = downsample(Vin,M);
+
+t = downsample(torig,M);
+
+
+%%
 
 % plot Vin
-subplot(2,1,1);
-plot(t/1e-6,Vin/1e-6,'LineWidth',2);
-xlabel("Time (\mus)",'FontSize',18);
-ylabel("Voltage (\muV)",'FontSize',18);
+subplot(2,2,1);
+plot(torig,Vin,'LineWidth',2);
+xlabel("Time (s)",'FontSize',18);
+ylabel("Voltage (V)",'FontSize',18);
 title(strcat("Input signal V_{in} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
-ylim([-(A1+0.1*A1)/1e-6 (A1+0.1*A1)/1e-6]);
+ylim([-(max(abs(Vin))+0.1*max(abs(Vin))) (max(abs(Vin))+0.1*max(abs(Vin)))]);
 grid on;
 
 % plot FFT of Vin
 Y = fft(Vin);
 
-P2 = abs(Y/L);
-P1 = P2(1:L/2+1);
+P2 = abs(Y/Lorig);
+P1 = P2(1:Lorig/2+1);
 P1(2:end-1) = 2*P1(2:end-1);
 
-f = Fs * (0:(L/2))/L;
+f = Fsorig * (0:(Lorig/2))/Lorig;
 
-subplot(2,1,2);
+subplot(2,2,2);
 plot(f,P1,'LineWidth',2);
 xlabel("Frequency (Hz)",'FontSize',18);
 ylabel("|P1(f)|",'FontSize',18);
@@ -44,11 +60,41 @@ xlim([0 12e7]);
 ylim([-(0.1*max(abs(P1))+0.1*max(abs(P1))) (max(abs(P1))+0.1*max(abs(P1)))]);
 grid on;
 
+% plot Vindec
+subplot(2,2,3);
+plot(t,Vindec,'LineWidth',2);
+xlabel("Time (s)",'FontSize',18);
+ylabel("Voltage (V)",'FontSize',18);
+title(strcat("Input signal V_{indec} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+ylim([-(max(abs(Vindec))+0.1*max(abs(Vindec))) (max(abs(Vindec))+0.1*max(abs(Vindec)))]);
+grid on;
+
+% plot FFT of Vindec
+Y = fft(Vindec);
+
+P2 = abs(Y/L);
+P1 = P2(1:L/2+1);
+P1(2:end-1) = 2*P1(2:end-1);
+
+f = (Fsorig/M) * (0:(L/2))/L;
+
+subplot(2,2,4);
+plot(f,P1,'LineWidth',2);
+xlabel("Frequency (Hz)",'FontSize',18);
+ylabel("|P1(f)|",'FontSize',18);
+title(strcat("FFT of V_{indec} at f = ",num2str(fosc/1e6),"MHz"),'FontSize',18);
+xlim([0 12e7]);
+ylim([-(0.1*max(abs(P1))+0.1*max(abs(P1))) (max(abs(P1))+0.1*max(abs(P1)))]);
+grid on;
+
+
+
+
 
 %% Simulate measurements (tunnelling events)
 
-event_time = ceil(L/2);
-event_duration = ceil(L/7);
+event_time = ceil(Lorig/2);
+event_duration = ceil(Lorig/7);
 
 Vevent = Vin;
 % assuming tunelling event will result in signal of 0.1 amplitude of original
@@ -71,7 +117,7 @@ grid on;
 noiseA = 1.7;
 
 % add noise
-noise = rand(1,L) * noiseA * A1 - (noiseA * A1)/2;
+noise = rand(1,Lorig) * noiseA * A1 - (noiseA * A1)/2;
 Vnoise = Vevent + noise;
 
 % phase shift
@@ -132,11 +178,11 @@ grid on;
 % plot FFT of Vmixed1
 Y = fft(Vmixed1);
 
-P2 = abs(Y/L);
-P1 = P2(1:L/2+1);
+P2 = abs(Y/Lorig);
+P1 = P2(1:Lorig/2+1);
 P1(2:end-1) = 2*P1(2:end-1);
 
-f = Fs * (0:(L/2))/L;
+f = Fsorig * (0:(Lorig/2))/Lorig;
 
 subplot(4,1,3);
 plot(f,P1,'LineWidth',2);
@@ -150,11 +196,11 @@ grid on;
 % plot FFT of Vmixed2
 Y = fft(Vmixed2);
 
-P2 = abs(Y/L);
-P1 = P2(1:L/2+1);
+P2 = abs(Y/Lorig);
+P1 = P2(1:Lorig/2+1);
 P1(2:end-1) = 2*P1(2:end-1);
 
-f = Fs * (0:(L/2))/L;
+f = Fsorig * (0:(Lorig/2))/Lorig;
 
 subplot(4,1,4);
 plot(f,P1,'LineWidth',2);
@@ -198,11 +244,11 @@ grid on;
 % plot FFT of Vmixed1
 Y = fft(Vfilt1);
 
-P2 = abs(Y/L);
-P1 = P2(1:L/2+1);
+P2 = abs(Y/Lorig);
+P1 = P2(1:Lorig/2+1);
 P1(2:end-1) = 2*P1(2:end-1);
 
-f = Fs * (0:(L/2))/L;
+f = Fsorig * (0:(Lorig/2))/Lorig;
 
 subplot(4,1,3);
 plot(f,P1,'LineWidth',2);
@@ -216,11 +262,11 @@ grid on;
 % plot FFT of Vmixed2
 Y = fft(Vfilt2);
 
-P2 = abs(Y/L);
-P1 = P2(1:L/2+1);
+P2 = abs(Y/Lorig);
+P1 = P2(1:Lorig/2+1);
 P1(2:end-1) = 2*P1(2:end-1);
 
-f = Fs * (0:(L/2))/L;
+f = Fsorig * (0:(Lorig/2))/Lorig;
 
 subplot(4,1,4);
 plot(f,P1,'LineWidth',2);
