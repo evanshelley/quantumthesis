@@ -1,0 +1,14 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Evan/Documents/Thesis/Vivado and Keysight/Vivado Project/lockin/lockin.srcs/sources_1/bd/lockin/ip/lockin_xlslice_0_1/sim/lockin_xlslice_0_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lockin_xlslice_0_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Evan/Documents/Thesis/Vivado and Keysight/Vivado Project/lockin/lockin.srcs/sources_1/bd/lockin/ip/lockin_xlslice_1_1/sim/lockin_xlslice_1_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lockin_xlslice_1_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Evan/Documents/Thesis/Vivado and Keysight/Vivado Project/lockin/lockin.srcs/sources_1/bd/lockin/ip/lockin_xlslice_2_0/sim/lockin_xlslice_2_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lockin_xlslice_2_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Evan/Documents/Thesis/Vivado and Keysight/Vivado Project/lockin/lockin.srcs/sources_1/bd/lockin/ip/lockin_xlconcat_0_0/sim/lockin_xlconcat_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lockin_xlconcat_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Evan/Documents/Thesis/Vivado and Keysight/Vivado Project/lockin/lockin.srcs/sources_1/bd/lockin/ip/lockin_xlconcat_0_1/sim/lockin_xlconcat_0_1.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lockin_xlconcat_0_1
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Evan/Documents/Thesis/Vivado and Keysight/Vivado Project/lockin/lockin.srcs/sources_1/bd/lockin/ip/lockin_xlconstant_0_0/sim/lockin_xlconstant_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module lockin_xlconstant_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Evan/Documents/Thesis/Vivado and Keysight/Vivado Project/lockin/lockin.sim/sim_1/behav/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
